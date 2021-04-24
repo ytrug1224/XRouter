@@ -1,0 +1,120 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from: "config.gradle"
+
+buildscript {
+    repositories {
+        mavenCentral()
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+        maven { url 'https://maven.google.com' }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.2'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        classpath 'com.jakewharton:butterknife-gradle-plugin:10.1.0'
+    }
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+        maven { url 'https://maven.google.com' }
+        maven { url "https://raw.github.com/bmob/bmob-android-sdk/master" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+//子项目配置，所有子项目的gradle配置将会在这里完成，子项目gradle仅保留最基本的元素即可
+subprojects { project ->
+    afterEvaluate {
+        //配置android通用属性
+        if (project.hasProperty("android")) {
+            android {
+                compileSdkVersion rootProject.ext.compileSdkVersion
+
+                defaultConfig {
+                    minSdkVersion rootProject.ext.minSdkVersion
+                    targetSdkVersion rootProject.ext.targetSdkVersion
+                    versionCode rootProject.ext.versionCode
+                    versionName rootProject.ext.versionName
+                }
+
+                compileOptions {
+                    sourceCompatibility JavaVersion.VERSION_1_8
+                    targetCompatibility JavaVersion.VERSION_1_8
+                }
+
+                lintOptions {
+                    abortOnError false
+                }
+            }
+        } else {
+            println "=========== no android project: ${project.name} ==========="
+        }
+
+        //对library进行配置
+        if (project.plugins.hasPlugin('com.android.library')) {
+            android {
+                buildTypes {
+                    debug {
+                        minifyEnabled false
+                        consumerProguardFiles 'proguard-rules.pro'
+                    }
+                    release {
+                        minifyEnabled true
+                        consumerProguardFiles 'proguard-rules.pro'
+                    }
+                }
+            }
+            if (project.name.contains('module')) {
+                //针对所有组件，添加各自名字的argument，用于区别apt生成的类
+                println "============== 添加argument: ${project.name} ================"
+                android {
+                    defaultConfig {
+                        javaCompileOptions {
+                            annotationProcessorOptions {
+                                arguments = ['MODULE_NAME': project.name]
+                            }
+                        }
+                    }
+                }
+            }
+        } else if (project.plugins.hasPlugin('com.android.application')) {
+            //对application工程配置混淆
+            android {
+                buildTypes {
+                    debug {
+                        minifyEnabled false
+                        shrinkResources false
+                        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                    }
+                    release {
+                        minifyEnabled true
+                        shrinkResources true
+                        zipAlignEnabled true
+                        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                    }
+                }
+                sourceSets {
+                    main {
+                        jniLibs.srcDirs = ['libs']
+                        jni.srcDirs = [] //disable automatic ndk-build call
+                    }
+                }
+
+                dexOptions {
+                    javaMaxHeapSize '4g'
+                    jumboMode true
+                }
+            }
+        }
+
+    }
+}

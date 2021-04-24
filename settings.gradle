@@ -1,0 +1,15 @@
+include ':app'
+include ':network'
+include ':lib'
+include ':uilib'
+
+//apt
+include ':router-annotations'
+include ':router-processor'
+
+include ':common'
+include ':router'
+//modules
+include ':module_main'
+//modules - impl(private)
+include ':example'
