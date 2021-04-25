@@ -1,6 +1,9 @@
 apply plugin: 'com.android.library'
 
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api project(':lib-common-ui')
+
+    api rootProject.ext.dependencies.recyclerview
+    api project(path: ':lib-tools')
 }

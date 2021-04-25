@@ -2,10 +2,10 @@ package com.xin.module.impl.main.ui;
 
 import android.view.View;
 
+import com.xin.github.common.base.BaseLibActivity;
 import com.xin.github.module.main.ui.TimeLineFragment;
-import com.xin.github.uilib.base.BaseLibActivity;
-import com.zxj.module.impl.main.R;
 
+import com.zxj.module.impl.main.R;
 
 public class MainActivity extends BaseLibActivity {
 
@@ -20,4 +20,5 @@ public class MainActivity extends BaseLibActivity {
                 .add(R.id.layout_container, new TimeLineFragment(), "timeline")
                 .commitAllowingStateLoss();
     }
+
 }

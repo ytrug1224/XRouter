@@ -50,11 +50,11 @@ public class ModuleServiceProcessor extends BaseProcessor {
     //value = list service impl from key for every module
     private static final HashMap<TypeName, List<InnerAptInfo>> mServiceImplMap = new HashMap<>();
     private final ParameterizedTypeName hashMapClass = ParameterizedTypeName.get(
-            ClassName.get(HashMap.class),//hashmap.class
-            ClassName.get(Class.class),//key class
+            ClassName.get(HashMap.class),
+            ClassName.get(Class.class),
             ParameterizedTypeName.get(
-                    ClassName.get(PACKAGE_SPARSEARRAY, "SparseArray"),//sparsearray.class,
-                    ClassName.get(Object.class)));//object.class
+                    ClassName.get(PACKAGE_SPARSEARRAY, "SparseArray"),
+                    ClassName.get(Object.class)));
 
     private static class InnerAptInfo {
         final TypeElement mirror;
@@ -73,7 +73,9 @@ public class ModuleServiceProcessor extends BaseProcessor {
         super.init(processingEnvironment);
 
         Map<String, String> options = processingEnvironment.getOptions();
-        if (options == null || options.isEmpty()) return;
+        if (options == null || options.isEmpty()) {
+            return;
+        }
         moduleName = options.get(KEY_MODULE_NAME);
     }
 
@@ -84,20 +86,17 @@ public class ModuleServiceProcessor extends BaseProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
-        if (roundEnvironment.processingOver()) {
-            if (!set.isEmpty()) {
-                return false;
-            }
+        if (roundEnvironment.processingOver() && !set.isEmpty()) {
+            return false;
         }
         if (set.isEmpty()) {
             logi(TAG + "annotations is empty,return");
             return false;
         }
 
-        logi(TAG + "start processing =========== ");
         mServiceImplMap.clear();
-
         scanClass(set, roundEnvironment);
+
         if (mServiceImplMap.isEmpty()) {
             loge(TAG + " find no class impl for @ServiceImpl");
             return false;
@@ -123,19 +122,19 @@ public class ModuleServiceProcessor extends BaseProcessor {
         //public final ServiceImplGen
         TypeSpec.Builder types = TypeSpec.classBuilder(APT_FILE_NAME + "$$" + moduleName)
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL);
-        //add interface
+        // add interface
         types.addSuperinterface(ClassName.get(mElementUtil.getTypeElement(APT_INTERFACE)));
-        //add hashmap field
+        // add hashmap field
         types.addField(createField());
-        //add static code for hashmap
+        // add static code for hashmap
         types.addStaticBlock(createStaticBlock());
-        //add interface method
+        // add interface method
         types.addMethod(createInterfaceMethod());
         return types.build();
     }
 
     private FieldSpec createField() {
-        //private static final SERVICE_IMPL_MAP = new HashMap();
+        // private static final SERVICE_IMPL_MAP = new HashMap();
         FieldSpec.Builder builder = FieldSpec.builder(hashMapClass, APT_FIELD_NAME)
                 .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
                 .initializer("new $T()", hashMapClass);
@@ -148,7 +147,7 @@ public class ModuleServiceProcessor extends BaseProcessor {
         final String listName = "mServiceImplList";
         final TypeName sparseArrayType = ClassName.get(PACKAGE_SPARSEARRAY, "SparseArray");
 
-        //SparseArray mServiceImplList
+        // SparseArray mServiceImplList
         builder.addStatement("$T " + listName, sparseArrayType);
 
         for (Map.Entry<TypeName, List<InnerAptInfo>> entry : mServiceImplMap.entrySet()) {

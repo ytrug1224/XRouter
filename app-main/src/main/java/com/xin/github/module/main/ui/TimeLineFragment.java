@@ -4,17 +4,17 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.zxj.github.module.main.R2;
-import com.xin.github.common.base.BaseAppFragment;
 import com.xin.github.lib.utils.RandomUtil;
 import com.xin.github.lib.utils.UIHelper;
+import com.zxj.github.module.main.R2;
+import com.xin.github.common.base.BaseAppFragment;
 import com.zxj.github.module.main.R;
 
-import com.xin.github.uilib.base.adapter.BaseMultiRecyclerViewHolder;
-import com.xin.github.uilib.base.adapter.MultiRecyclerViewAdapter;
-import com.xin.github.uilib.base.adapter.SimpleMultiType;
-import com.xin.github.uilib.base.adapter.interfaces.OnItemClickListener;
-import com.xin.github.uilib.base.adapter.interfaces.OnItemLongClickListener;
+import com.xin.github.common.base.adapter.BaseMultiRecyclerViewHolder;
+import com.xin.github.common.base.adapter.MultiRecyclerViewAdapter;
+import com.xin.github.common.base.adapter.SimpleMultiType;
+import com.xin.github.common.base.adapter.interfaces.OnItemClickListener;
+import com.xin.github.common.base.adapter.interfaces.OnItemLongClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -122,7 +122,7 @@ public class TimeLineFragment extends BaseAppFragment {
 
         @Override
         public void onBindData(SimpleMultiType data, int position) {
-            lable.setText(position + "aa");
+            lable.setText(position + "aa1");
         }
     }
 }

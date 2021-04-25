@@ -1,13 +1,12 @@
-include ':lib'
-include ':uilib'
+include ':lib-tools'
+include ':lib-common-ui'
 
 //apt
 include ':router-annotations'
 include ':router-processor'
-
-include ':common'
 include ':router'
+
 //modules
 include ':app-main'
-//modules - impl(private)
+
 include ':example'
