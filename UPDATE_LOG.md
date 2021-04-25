@@ -3,19 +3,19 @@
 * 2019/01/16
   * 沉浸式完成，titlebar渐变完成
   * 效果图：
-  * ![](https://github.com/razerdp/Pics/blob/master/rcle/demo.gif)
+  * ![](https://github.com/zxj/Pics/blob/master/rcle/demo.gif)
 
 * 2018/9/27
   * fixed #79
   * 近期因为个人工作问题，暂时不更新，。。
   
 * 2018/8/7
-  * 修复多图发布无法移除图片问题  #62 (https://github.com/razerdp/FriendCircle/issues/62)
+  * 修复多图发布无法移除图片问题  #62 (https://github.com/zxj/FriendCircle/issues/62)
   * 适配Android O
   * 展开评论暂时没有完成，因此暂时禁用。
   
 * 2018/3/29
-  * 修复点击名字问题，优化spanEx（#65）https://github.com/razerdp/FriendCircle/issues/65
+  * 修复点击名字问题，优化spanEx（#65）https://github.com/zxj/FriendCircle/issues/65
   * 继续编写可收缩/展开的评论layout
 
 * 2018/3/23
@@ -45,7 +45,7 @@
 
 * 2017/12/13
   * 修复`PraiseWidget`点赞控件可能出现的无限回调`draw()`方法的问题，感谢[@Leu*Z](https://github.com/Leu*Z)
-  * 优化控件，将评论展示控件封装到`CommentContentsLayout`，同时用`addViewInLayout`代替`addView`防止多次 **requestLayout()** ，下一步将会解决[#28](https://github.com/razerdp/FriendCircle/issues/28)
+  * 优化控件，将评论展示控件封装到`CommentContentsLayout`，同时用`addViewInLayout`代替`addView`防止多次 **requestLayout()** ，下一步将会解决[#28](https://github.com/zxj/FriendCircle/issues/28)
 
 * 2017/11/17
   * 重构组件化，命名统一，针对以前不合理的地方进行修正，引入common模块
@@ -91,7 +91,7 @@
   * 图片预览页面实现
   * 选择后退出的保存即页面的更新
 
-![](https://github.com/razerdp/FriendCirclePreview/blob/master/img/2017_04_05photo_select.gif)
+![](https://github.com/zxj/FriendCirclePreview/blob/master/img/2017_04_05photo_select.gif)
 
 * 2017/03/30
   * 修复LocalPhotoManager监听媒体库更新时插入过多数据的问题。
@@ -101,7 +101,7 @@
 * 2017/03/28
   * 图片选择模块完成！包含了选择的动画，交互按照iOS的哦~
   
-![](https://github.com/razerdp/FriendCirclePreview/blob/master/img/2017*03*28%20%E5%9B%BE%E7%89%87%E9%80%89%E6%8B%A9.gif)
+![](https://github.com/zxj/FriendCirclePreview/blob/master/img/2017*03*28%20%E5%9B%BE%E7%89%87%E9%80%89%E6%8B%A9.gif)
 
 
 * 2017/03/24
@@ -135,13 +135,13 @@
     * 采取全局Gradle配置，详见（config.gradle）
 
 * 2017/03/15
-  * fix [#42](https://github.com/razerdp/FriendCircle/issues/42)
+  * fix [#42](https://github.com/zxj/FriendCircle/issues/42)
   * 修复RecyclerView没有滚动条的问题。
   * RecyclerView的HeaderViewAdapter单独抽出。
 
 
 * 2017/03/08
-  * 解决浏览大图失败无法返回退出的问题[#41](https://github.com/razerdp/FriendCircle/issues/41)
+  * 解决浏览大图失败无法返回退出的问题[#41](https://github.com/zxj/FriendCircle/issues/41)
 
 * 2017/03/02
   * 增加popup
@@ -179,7 +179,7 @@
 
 预览图：
 
-![](https://github.com/razerdp/FriendCirclePreview/blob/master/img/2017*02*08%E5%9B%BE%E7%89%87%E9%80%80%E5%87%BA%E5%8A%A8%E7%94%BB.gif)
+![](https://github.com/zxj/FriendCirclePreview/blob/master/img/2017*02*08%E5%9B%BE%E7%89%87%E9%80%80%E5%87%BA%E5%8A%A8%E7%94%BB.gif)
 
 
 * 2016/12/23

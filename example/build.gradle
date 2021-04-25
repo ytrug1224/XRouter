@@ -2,5 +2,5 @@ apply plugin: 'com.android.application'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':module_main')
+    implementation project(':app-main')
 }

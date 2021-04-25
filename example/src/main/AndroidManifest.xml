@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.razerdp.module.impl.main"
+<manifest package="com.zxj.module.impl.main"
           xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:name=".MainApplication"
+        android:name="com.xin.module.impl.main.MainApplication"
         android:label="@string/app_name"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.MainActivity">
+        <activity android:name="com.xin.module.impl.main.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
